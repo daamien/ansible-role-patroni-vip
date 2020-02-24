@@ -1,0 +1,18 @@
+
+- name: Deploy the patroni_vip callback
+  template:
+    src: patroni_vip.py.j2
+    dest: /usr/local/bin/patroni_vip.py
+    owner: postgres
+    group: postgres
+    mode: 0750
+
+# NOTE: Fully quoted because of the ': ' on the line.
+# See the Gotchas in the YAML docs.
+- name: Allow postgres user to sudo the patroni_vip.py callback
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^postgres ALL='
+    line: 'postgres ALL=(ALL) NOPASSWD: /usr/local/bin/patroni_vip.py '
+    validate: /usr/sbin/visudo -cf %s

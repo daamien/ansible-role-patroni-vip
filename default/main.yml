@@ -1,0 +1,7 @@
+
+
+patroni_vip_address: 192.168.0.1
+patroni_vip_address_cidr: 192.168.0.1/24
+patroni_vip_broadcast: 192.168.0.255
+patroni_vip_device: eth1
+
