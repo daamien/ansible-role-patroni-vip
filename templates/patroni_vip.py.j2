@@ -44,6 +44,11 @@ def main():
             del_vip()
         if action == 'on_stop' and new_role == 'master':
             del_vip()
+        if action == 'on_restart' and new_role == 'master':
+            add_vip()
+        if action == 'on_reload' and new_role == 'master':
+            add_vip()
+
     else:
         sys.exit("Usage: {0} <action> <role> <scope>".format(sys.argv[0]))
 
