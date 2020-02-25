@@ -30,7 +30,7 @@ def main():
         level=logging.INFO,
     )
     if len(sys.argv) == 4 and sys.argv[1] in ('on_start', 'on_stop',
-                                              'on_role_change'):
+                                              'on_role_change', 'on_restart', 'on_reload'):
         cluster_name = sys.argv[3]
         action = sys.argv[1]
         new_role = sys.argv[2]
@@ -42,7 +42,7 @@ def main():
             add_vip()
         if action == 'on_role_change' and new_role != 'master':
             del_vip()
-        if action == 'on_stop' and new_role == 'master':
+        if action == 'on_stop':
             del_vip()
         if action == 'on_restart' and new_role == 'master':
             add_vip()
