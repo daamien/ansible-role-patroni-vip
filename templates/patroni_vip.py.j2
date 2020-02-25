@@ -40,7 +40,7 @@ def main():
             add_vip()
         if action == 'on_start' and new_role == 'master':
             add_vip()
-        if action == 'on_role_change' and new_role != 'master':
+        if new_role != 'master':
             del_vip()
         if action == 'on_stop':
             del_vip()
