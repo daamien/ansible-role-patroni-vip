@@ -25,7 +25,7 @@ def del_vip():
 
 def main():
     logging.basicConfig(
-        filename='/var/lib/pgsql/vip.log',
+        filename='{{ patroni_vip_log_dir }}/vip.log',
         format='%(asctime)s %(levelname)s: %(message)s',
         level=logging.INFO,
     )
