@@ -1,11 +1,25 @@
 
-- name: Deploy the patroni_vip callback
+- name: Deploy the patroni_vip script
   template:
     src: patroni_vip.py.j2
     dest: /usr/local/bin/patroni_vip.py
     owner: postgres
     group: postgres
     mode: 0750
+
+- name: Deploy the VIP callbacks
+  copy:
+    src: "callbacks/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    owner: "postgres"
+    group: "postgres"
+    mode: 0750
+  with_items:
+    - "on_start"
+    - "on_stop"
+    - "on_reload"
+    - "on_restart"
+    - "on_role_change"
 
 # NOTE: Fully quoted because of the ': ' on the line.
 # See the Gotchas in the YAML docs.
